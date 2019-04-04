@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FoodTask</string>
+    <string name="dg_select_quantity_total_divider">/</string>
+
+    <string name="common_abort">Отменить</string>
+    <string name="common_add">Добавить</string>
+    <string name="common_clear_all">Очистить все</string>
+    <string name="common_pay">Оплатить</string>
+
+    <string name="order_total">Итого:</string>
+    <string name="common_multiplication">x</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
