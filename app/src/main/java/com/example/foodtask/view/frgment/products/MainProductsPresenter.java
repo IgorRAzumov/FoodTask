@@ -3,8 +3,8 @@ package com.example.foodtask.view.frgment.products;
 import com.arellomobile.mvp.InjectViewState;
 import com.example.domain.interactor.counties.ILoadCountriesInteractor;
 import com.example.domain.interactor.products.load.ILoadProductsInteractor;
+import com.example.foodtask.core.BasePresenter;
 import com.example.foodtask.utils.sheduler.ISchedulersProvider;
-import com.example.foodtask.view.frgment.BasePresenter;
 
 import javax.inject.Inject;
 
@@ -23,6 +23,10 @@ public class MainProductsPresenter extends BasePresenter<MainProductsView> {
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
         loadData();
+    }
+
+    void onMenuClick() {
+        getViewState().showMenu();
     }
 
     private void loadData() {

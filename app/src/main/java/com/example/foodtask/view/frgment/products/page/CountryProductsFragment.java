@@ -17,13 +17,14 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.domain.model.Country;
 import com.example.domain.model.Product;
 import com.example.foodtask.R;
+import com.example.foodtask.core.BaseFragment;
 import com.example.foodtask.di.DI;
 import com.example.foodtask.di.module.ProductModule;
 import com.example.foodtask.view.adapter.products.IProductsPresenter;
 import com.example.foodtask.view.adapter.products.ProductAdapter;
 import com.example.foodtask.view.dialog.ISelectQuantityPresenter;
 import com.example.foodtask.view.dialog.SelectQuantityDialog;
-import com.example.foodtask.view.frgment.BaseFragment;
+import com.example.foodtask.view.utils.SpacingItemDecorator;
 
 import butterknife.BindView;
 import toothpick.Scope;
@@ -83,6 +84,8 @@ public class CountryProductsFragment extends BaseFragment implements CountryProd
     public void setProductsListPresenter(IProductsPresenter productsPresenter) {
         productsAdapter = new ProductAdapter(productsPresenter);
         recyclerView.setAdapter(productsAdapter);
+        recyclerView.addItemDecoration(new SpacingItemDecorator(5,16, true,
+                getResources().getDisplayMetrics().density));
     }
 
     @Override
@@ -115,6 +118,7 @@ public class CountryProductsFragment extends BaseFragment implements CountryProd
     private void initRecycler() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 5));
+
     }
 
     private void initSwipeRefreshLayout() {

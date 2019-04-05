@@ -7,21 +7,29 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.domain.model.Country;
 import com.example.foodtask.R;
+import com.example.foodtask.core.BaseFragment;
 import com.example.foodtask.di.DI;
 import com.example.foodtask.di.module.ProductModule;
 import com.example.foodtask.view.adapter.products_page.ProductsPageAdapter;
-import com.example.foodtask.view.frgment.BaseFragment;
 import com.example.foodtask.view.frgment.products.page.CountryProductsFragment;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,11 +77,24 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
         return R.layout.fragment_main_products;
     }
 
+    @Override
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        setHasOptionsMenu(true);
+        return view;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initSwipeRefreshLayout();
+        initToolbar();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_product_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -99,6 +120,11 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
         tabLayout.setupWithViewPager(productsViewPager);
     }
 
+    @Override
+    public void showMenu() {
+        getFragmentContainer().openMenu();
+    }
+
     private void initSwipeRefreshLayout() {
         swipeRefreshLayout.setEnabled(false);
     }
@@ -122,5 +148,17 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
             titles.add(country.getName());
         }
         return titles;
+    }
+
+
+    private void initToolbar() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity == null) {
+            return;
+        }
+        toolbar.setTitleTextColor(ContextCompat.getColor(activity, R.color.white));
+        toolbar.setNavigationIcon(R.drawable.ic_menu);
+        toolbar.setNavigationOnClickListener(v -> presenter.onMenuClick());
+        activity.setSupportActionBar(toolbar);
     }
 }

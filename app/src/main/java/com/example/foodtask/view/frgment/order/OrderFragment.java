@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.foodtask.R;
-import com.example.foodtask.view.frgment.BaseFragment;
+import com.example.foodtask.core.BaseFragment;
 
 
 public class OrderFragment extends BaseFragment implements OrderView {

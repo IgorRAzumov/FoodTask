@@ -14,4 +14,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error_data_load">Ошибка загрузки данных</string>
     <string name="common_all">ВСЕ</string>
+    <string name="common_products">Товары</string>
+    <string name="common_history">История</string>
+    <string name="common_reports">Отчеты</string>
+    <string name="common_settings">Настройка</string>
+    <string name="common_support">Поддержка</string>
+    <string name="common_exit">Выйти</string>
+    <string name="dummy_user">Вася Иванов</string>
+    <string name="dummy_email">Chikdde@Mdff.dfdf</string>
+    <string name="error_implement_fragment_container">fragment must implement IFragmentContainer</string>
 </resources>

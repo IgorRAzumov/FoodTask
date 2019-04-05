@@ -1,4 +1,4 @@
-package com.example.foodtask.view.frgment;
+package com.example.foodtask.core;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.arellomobile.mvp.MvpView;

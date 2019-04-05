@@ -18,4 +18,6 @@ public interface MainProductsView extends MvpView {
     void showErrorLoadData();
 
     void countriesDataLoaded(List<Country> countries);
+
+    void showMenu();
 }

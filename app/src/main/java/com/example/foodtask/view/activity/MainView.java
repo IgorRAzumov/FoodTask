@@ -13,4 +13,6 @@ interface MainView extends MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy.class)
     void showOrderScreen();
+
+    void closeMenu();
 }

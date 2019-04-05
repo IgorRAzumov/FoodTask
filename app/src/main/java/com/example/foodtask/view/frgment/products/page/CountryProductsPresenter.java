@@ -4,6 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.example.domain.interactor.products.load.ILoadProductsInteractor;
 import com.example.domain.model.Country;
 import com.example.domain.model.Product;
+import com.example.foodtask.core.BasePresenter;
 import com.example.foodtask.utils.sheduler.ISchedulersProvider;
 import com.example.foodtask.view.adapter.products.IProductItem;
 import com.example.foodtask.view.adapter.products.IProductsPresenter;
@@ -11,7 +12,6 @@ import com.example.foodtask.view.adapter.quantity_calc.IQuantityCalcItem;
 import com.example.foodtask.view.adapter.quantity_calc.IQuantityCalcPresenter;
 import com.example.foodtask.view.dialog.ISelectQuantityPresenter;
 import com.example.foodtask.view.dialog.ISelectQuantityView;
-import com.example.foodtask.view.frgment.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
