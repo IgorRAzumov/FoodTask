@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class LoadCountriesInteractor implements ILoadCountriesInteractor {
     private final IProductsRepository repository;
@@ -18,7 +18,7 @@ public class LoadCountriesInteractor implements ILoadCountriesInteractor {
     }
 
     @Override
-    public Single<List<Country>> loadAllCountries() {
+    public Flowable<List<Country>> loadAllCountries() {
         return repository.loadCountries();
     }
 }

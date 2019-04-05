@@ -8,4 +8,6 @@ import io.reactivex.Flowable;
 
 public interface ILoadProductsInteractor {
     Flowable<List<Product>> loadAllProducts();
+
+    Flowable<List<Product>> loadProductsByCountry(long id);
 }

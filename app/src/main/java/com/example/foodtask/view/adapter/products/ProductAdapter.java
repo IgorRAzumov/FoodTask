@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import com.example.foodtask.R;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
-    private final IProductPresenter presenter;
+    private final IProductsPresenter presenter;
 
-    public ProductAdapter(IProductPresenter presenter) {
+    public ProductAdapter(IProductsPresenter presenter) {
         this.presenter = presenter;
     }
 

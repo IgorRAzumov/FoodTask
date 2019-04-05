@@ -3,11 +3,8 @@ package com.example.foodtask.view.frgment.products;
 import com.arellomobile.mvp.InjectViewState;
 import com.example.domain.interactor.counties.ILoadCountriesInteractor;
 import com.example.domain.interactor.products.load.ILoadProductsInteractor;
-import com.example.domain.model.Country;
 import com.example.foodtask.utils.sheduler.ISchedulersProvider;
 import com.example.foodtask.view.frgment.BasePresenter;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -22,8 +19,6 @@ public class MainProductsPresenter extends BasePresenter<MainProductsView> {
     @Inject
     ISchedulersProvider schedulersProvider;
 
-    private List<Country> countries;
-
     @Override
     protected void onFirstViewAttach() {
         super.onFirstViewAttach();
@@ -36,13 +31,12 @@ public class MainProductsPresenter extends BasePresenter<MainProductsView> {
                         .loadAllCountries()
                         .subscribeOn(schedulersProvider.io())
                         .observeOn(schedulersProvider.mainThread())
-                        .observeOn(schedulersProvider.io())
                         .doOnSubscribe(disposable -> getViewState().showProgress())
-                        .doOnSuccess(countries -> this.countries = countries)
-                        .doFinally(() -> getViewState().hideProgress())
-                        .subscribe(countries -> getViewState().countriesDataLoaded()
+                        .doAfterNext(countries -> getViewState().hideProgress())
+                        .subscribe(countries -> getViewState().countriesDataLoaded(countries)
                                 , throwable -> {
                                     Timber.e(throwable);
+                                    getViewState().hideProgress();
                                     getViewState().showErrorLoadData();
                                 }));
     }

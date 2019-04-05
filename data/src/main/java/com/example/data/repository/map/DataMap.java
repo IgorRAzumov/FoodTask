@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataMap implements IDataMap {
-    public DataMap() {
-    }
-
     @Override
     public List<Product> mapToProducts(List<ProductEntity> productEntities) {
         List<Product> products = new ArrayList<>();

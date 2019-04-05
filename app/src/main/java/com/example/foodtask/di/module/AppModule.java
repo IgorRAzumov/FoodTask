@@ -26,16 +26,15 @@ public class AppModule extends Module {
     public AppModule(Context context) {
         bind(Context.class).toInstance(context);
 
-        bind(ISchedulersProvider.class).to(SchedulersProvider.class);
-        bind(IDataMap.class).to(DataMap.class);
+        bind(ISchedulersProvider.class).toInstance(new SchedulersProvider());
+        bind(IDataMap.class).toInstance(new DataMap());
 
-        bind(ProductsDatabase.class).toProvider(ProductsDatabaseProvider.class);
-        bind(ProductsDao.class).toProvider(ProductsDaoProvider.class);
-        bind(CountriesDao.class).toProvider(CountriesDaoProvider.class);
+        bind(ProductsDatabase.class).toProvider(ProductsDatabaseProvider.class).singletonInScope();
+        bind(ProductsDao.class).toProvider(ProductsDaoProvider.class).singletonInScope();
+        bind(CountriesDao.class).toProvider(CountriesDaoProvider.class).singletonInScope();
 
         bind(IProductsLocalSource.class).to(ProductsLocalSource.class);
         bind(ICountriesLocalSource.class).to(CountriesLocalSource.class);
-
         bind(IProductsRepository.class).to(ProductsRepository.class);
     }
 }

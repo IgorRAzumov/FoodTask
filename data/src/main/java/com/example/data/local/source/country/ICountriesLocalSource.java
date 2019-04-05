@@ -4,8 +4,8 @@ import com.example.data.local.db.entity.CountryEntity;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public interface ICountriesLocalSource {
-    Single<List<CountryEntity>> loadCountries();
+   Flowable<List<CountryEntity>> loadCountries();
 }

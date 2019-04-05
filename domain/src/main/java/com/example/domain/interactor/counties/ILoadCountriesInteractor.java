@@ -4,8 +4,8 @@ import com.example.domain.model.Country;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public interface ILoadCountriesInteractor {
-    Single<List<Country>> loadAllCountries();
+   Flowable<List<Country>> loadAllCountries();
 }

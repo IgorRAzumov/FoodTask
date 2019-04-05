@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.foodtask.R;
-import com.example.foodtask.view.dialog.ISelectQuantityPresenter;
-import com.example.foodtask.view.dialog.SelectQuantityDialog;
 import com.example.foodtask.view.frgment.order.OrderFragment;
 import com.example.foodtask.view.frgment.products.MainProductsFragment;
 
@@ -19,12 +17,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    @Override
-    public void showCalcDialog(ISelectQuantityPresenter presenter) {
-        SelectQuantityDialog selectQuantityDialog = SelectQuantityDialog.newInstance(presenter);
-        selectQuantityDialog.show(getSupportFragmentManager(), SelectQuantityDialog.TAG);
     }
 
     @Override

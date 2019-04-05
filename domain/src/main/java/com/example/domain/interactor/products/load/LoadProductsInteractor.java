@@ -21,4 +21,9 @@ public class LoadProductsInteractor implements ILoadProductsInteractor {
     public Flowable<List<Product>> loadAllProducts() {
         return repository.loadProducts();
     }
+
+    @Override
+    public Flowable<List<Product>> loadProductsByCountry(long id) {
+        return repository.loadProductsByCountry(id);
+    }
 }

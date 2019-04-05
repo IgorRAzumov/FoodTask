@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 public class CountriesLocalSource implements ICountriesLocalSource {
     private final CountriesDao countriesDao;
@@ -18,7 +18,7 @@ public class CountriesLocalSource implements ICountriesLocalSource {
     }
 
     @Override
-    public Single<List<CountryEntity>> loadCountries() {
+    public Flowable<List<CountryEntity>> loadCountries() {
         return countriesDao.getAllCountries();
     }
 }

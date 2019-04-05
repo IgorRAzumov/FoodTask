@@ -16,4 +16,19 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements IProdu
         ButterKnife.bind(this, itemView);
         this.clickListener = clickListener;
     }
+
+    @Override
+    public void bindProductName(String name) {
+
+    }
+
+    @Override
+    public void bindProductImage(String image) {
+
+    }
+
+    @Override
+    public void bindProductCategory(int category) {
+
+    }
 }

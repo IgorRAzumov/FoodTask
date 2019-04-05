@@ -9,7 +9,7 @@ import com.example.data.local.db.entity.CountryEntity;
 
 import java.util.List;
 
-import io.reactivex.Single;
+import io.reactivex.Flowable;
 
 @Dao
 public interface CountriesDao {
@@ -17,5 +17,5 @@ public interface CountriesDao {
     void insertAll(CountryEntity...countryEntities);
 
     @Query("SELECT * from country")
-    Single<List<CountryEntity>> getAllCountries();
+    Flowable<List<CountryEntity>> getAllCountries();
 }

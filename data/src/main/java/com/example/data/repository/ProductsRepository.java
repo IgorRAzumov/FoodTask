@@ -13,7 +13,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
-import io.reactivex.Single;
 import timber.log.Timber;
 
 public class ProductsRepository implements IProductsRepository {
@@ -41,12 +40,18 @@ public class ProductsRepository implements IProductsRepository {
     }
 
     @Override
-    public Flowable<List<Product>> loadProductsByCountry(int countryId) {
-        return null;
+    public Flowable<List<Product>> loadProductsByCountry(long countryId) {
+       return localDataSource
+                .loadProducts()
+                .onErrorReturn(throwable -> {
+                    Timber.e(throwable);
+                    return Collections.emptyList();
+                })
+                .map(dataMap::mapToProducts);
     }
 
     @Override
-    public Single<List<Country>> loadCountries() {
+    public Flowable<List<Country>> loadCountries() {
         return countriesDataSource
                 .loadCountries()
                 .onErrorReturn(throwable -> {

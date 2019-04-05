@@ -38,6 +38,10 @@ public class Product {
         return name;
     }
 
+    public int getCategory() {
+        return category;
+    }
+
     public final static class Builder {
         private int category;
         private long id;

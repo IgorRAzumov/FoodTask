@@ -6,12 +6,11 @@ import com.example.domain.model.Product;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.Single;
 
 public interface IProductsRepository {
     Flowable<List<Product>> loadProducts();
 
-    Flowable<List<Product>> loadProductsByCountry(int countryId);
+    Flowable<List<Product>> loadProductsByCountry(long countryId);
 
-    Single<List<Country>> loadCountries();
+    Flowable<List<Country>> loadCountries();
 }
