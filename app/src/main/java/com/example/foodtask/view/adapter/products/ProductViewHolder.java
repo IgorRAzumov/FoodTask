@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.foodtask.R;
+import com.example.foodtask.utils.image.loader.IImageLoader;
 import com.example.foodtask.view.adapter.common.ISingleItemClickListener;
 
 import butterknife.BindColor;
@@ -27,11 +28,13 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements IProdu
     int secondCategoryColor;
 
     private final ISingleItemClickListener clickListener;
+    private final IImageLoader imageLoader;
 
-    ProductViewHolder(@NonNull View itemView, ISingleItemClickListener clickListener) {
+    ProductViewHolder(@NonNull View itemView, ISingleItemClickListener clickListener, IImageLoader imageLoader) {
         super(itemView);
         ButterKnife.bind(this, itemView);
         this.clickListener = clickListener;
+        this.imageLoader = imageLoader;
         itemView.setOnClickListener(v -> onItemClick());
     }
 
@@ -49,7 +52,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements IProdu
 
     @Override
     public void bindProductImage(String image) {
-
+        imageLoader.loadImageInTarget(image, productImage);
     }
 
     @Override

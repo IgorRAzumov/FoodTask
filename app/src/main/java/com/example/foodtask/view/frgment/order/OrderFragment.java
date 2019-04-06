@@ -11,14 +11,20 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.domain.model.OrderItem;
 import com.example.foodtask.R;
 import com.example.foodtask.core.BaseFragment;
+import com.example.foodtask.di.DI;
 import com.example.foodtask.view.adapter.order.IOrderItemsPresenter;
 import com.example.foodtask.view.adapter.order.OrderItemsAdapter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import toothpick.Scope;
+import toothpick.Toothpick;
+
+import static com.example.foodtask.di.DI.PRODUCT_SCOPE;
 
 
 public class OrderFragment extends BaseFragment implements OrderView {
@@ -37,6 +43,12 @@ public class OrderFragment extends BaseFragment implements OrderView {
     public OrderFragment() {
     }
 
+    @ProvidePresenter
+    OrderPresenter providePresenter() {
+        Scope scope = Toothpick.openScopes(DI.APP_SCOPE, PRODUCT_SCOPE);
+        return scope.getInstance(OrderPresenter.class);
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_order;
@@ -49,7 +61,7 @@ public class OrderFragment extends BaseFragment implements OrderView {
     }
 
     @OnClick(R.id.bt_fr_order_number_clear)
-    void onClearAllButtonClick(){
+    void onClearAllButtonClick() {
         presenter.onClearAllClick();
     }
 

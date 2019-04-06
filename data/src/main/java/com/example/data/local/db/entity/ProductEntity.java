@@ -31,6 +31,7 @@ public class ProductEntity {
         this.price = price;
         this.country = country;
         this.image = image;
+        this.category = category;
     }
 
     public long getId() {

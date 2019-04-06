@@ -25,7 +25,6 @@ import com.example.domain.model.Country;
 import com.example.foodtask.R;
 import com.example.foodtask.core.BaseFragment;
 import com.example.foodtask.di.DI;
-import com.example.foodtask.di.module.ProductModule;
 import com.example.foodtask.view.adapter.products_page.ProductsPageAdapter;
 import com.example.foodtask.view.frgment.products.page.CountryProductsFragment;
 
@@ -67,9 +66,7 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
     @ProvidePresenter
     MainProductsPresenter providePresenter() {
         Scope scope = Toothpick.openScopes(DI.APP_SCOPE, PRODUCT_SCOPE);
-        scope.installModules(new ProductModule());
-        presenter = scope.getInstance(MainProductsPresenter.class);
-        return presenter;
+        return presenter = scope.getInstance(MainProductsPresenter.class);
     }
 
     @Override

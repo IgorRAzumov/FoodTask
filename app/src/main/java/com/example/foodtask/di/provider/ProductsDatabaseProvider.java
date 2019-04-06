@@ -41,20 +41,19 @@ public class ProductsDatabaseProvider implements Provider<ProductsDatabase> {
     private CountryEntity[] createDummyCountries() {
         List<CountryEntity> countryEntities = new ArrayList<>();
         countryEntities.add(new CountryEntity("Россия"));
-        countryEntities.add(new CountryEntity("Белоруссия"));
+        countryEntities.add(new CountryEntity("Беларусь"));
         return countryEntities.toArray(new CountryEntity[0]);
     }
 
     private ProductEntity[] createDummyData() {
         List<ProductEntity> productEntities = new ArrayList<>();
-        productEntities.add(new ProductEntity("свекла", "sddssdf", 42, 1, 1));
-        productEntities.add(new ProductEntity("морковь", "sddssdf", 50, 2, 1));
-        productEntities.add(new ProductEntity("лук", "sddssdf", 77, 1, 1));
-        productEntities.add(new ProductEntity("петрушка", "sddssdf", 23, 2, 1));
-        productEntities.add(new ProductEntity("укроп", "sddssdf", 43, 1, 1));
-        productEntities.add(new ProductEntity("помидоры", "sddssdf", 62, 2, 1));
-        productEntities.add(new ProductEntity("огурцы", "sddssdf", 32, 1, 1));
-        productEntities.add(new ProductEntity("sdsfs", "sddssdf", 37, 2, 1));
+        productEntities.add(new ProductEntity("Свекла", "file:///android_asset/beet.jpg", 42, 1, 1));
+        productEntities.add(new ProductEntity("Мморковь", "file:///android_asset/carrot.jpg", 50, 2, 2));
+        productEntities.add(new ProductEntity("Лук", "file:///android_asset/onion.jpg", 77, 1, 1));
+        productEntities.add(new ProductEntity("Петрушка", "file:///android_asset/parsley.jpg", 23, 2, 2));
+        productEntities.add(new ProductEntity("Укроп", "file:///android_asset/dill.jpg", 43, 1, 1));
+        productEntities.add(new ProductEntity("Помидоры", "file:///android_asset/tomato.jpg", 62, 2, 2));
+        productEntities.add(new ProductEntity("Огурцы", "file:///android_asset/cucumber.jpg", 32, 1, 1));
         return productEntities.toArray(new ProductEntity[0]);
     }
 

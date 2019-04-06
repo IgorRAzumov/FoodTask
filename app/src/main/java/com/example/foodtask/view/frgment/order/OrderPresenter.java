@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.example.domain.interactor.order.ICreateOrderInteractor;
 import com.example.domain.model.OrderItem;
 import com.example.foodtask.core.BasePresenter;
-import com.example.foodtask.utils.sheduler.SchedulersProvider;
+import com.example.foodtask.utils.sheduler.ISchedulersProvider;
 import com.example.foodtask.view.adapter.order.IOrderItemView;
 import com.example.foodtask.view.adapter.order.IOrderItemsPresenter;
 
@@ -20,7 +20,7 @@ public class OrderPresenter extends BasePresenter<OrderView> {
     @Inject
     ICreateOrderInteractor createOrderInteractor;
     @Inject
-    SchedulersProvider schedulersProvider;
+    ISchedulersProvider schedulersProvider;
 
     private IOrderItemsPresenter orderItemsPresenter;
 
@@ -70,7 +70,7 @@ public class OrderPresenter extends BasePresenter<OrderView> {
         addToDisposables(
                 createOrderInteractor
                         .ordersItemsObservable()
-                        .observeOn(schedulersProvider.mainThread())
+                        .subscribeOn(schedulersProvider.mainThread())
                         .doOnNext(orderItem -> orderItemsPresenter.addOrderItem(orderItem))
                         .subscribe(orderItem -> getViewState().orderItemAdded(orderItem,
                                 orderItemsPresenter.getItemCount())

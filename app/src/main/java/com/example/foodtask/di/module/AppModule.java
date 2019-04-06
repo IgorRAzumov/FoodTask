@@ -16,6 +16,8 @@ import com.example.domain.repository.IProductsRepository;
 import com.example.foodtask.di.provider.CountriesDaoProvider;
 import com.example.foodtask.di.provider.ProductsDaoProvider;
 import com.example.foodtask.di.provider.ProductsDatabaseProvider;
+import com.example.foodtask.utils.image.loader.IImageLoader;
+import com.example.foodtask.utils.image.loader.glide.GlideImageLoader;
 import com.example.foodtask.utils.sheduler.ISchedulersProvider;
 import com.example.foodtask.utils.sheduler.SchedulersProvider;
 
@@ -28,13 +30,14 @@ public class AppModule extends Module {
 
         bind(ISchedulersProvider.class).toInstance(new SchedulersProvider());
         bind(IDataMap.class).toInstance(new DataMap());
+        bind(IImageLoader.class).toInstance(new GlideImageLoader());
 
-        bind(ProductsDatabase.class).toProvider(ProductsDatabaseProvider.class).singletonInScope();
-        bind(ProductsDao.class).toProvider(ProductsDaoProvider.class).singletonInScope();
-        bind(CountriesDao.class).toProvider(CountriesDaoProvider.class).singletonInScope();
+        bind(ProductsDatabase.class).toProvider(ProductsDatabaseProvider.class);
+        bind(ProductsDao.class).toProvider(ProductsDaoProvider.class);
+        bind(CountriesDao.class).toProvider(CountriesDaoProvider.class);
 
-        bind(IProductsLocalSource.class).to(ProductsLocalSource.class);
-        bind(ICountriesLocalSource.class).to(CountriesLocalSource.class);
-        bind(IProductsRepository.class).to(ProductsRepository.class);
+        bind(IProductsLocalSource.class).to(ProductsLocalSource.class).singletonInScope();
+        bind(ICountriesLocalSource.class).to(CountriesLocalSource.class).singletonInScope();
+        bind(IProductsRepository.class).to(ProductsRepository.class).singletonInScope();
     }
 }

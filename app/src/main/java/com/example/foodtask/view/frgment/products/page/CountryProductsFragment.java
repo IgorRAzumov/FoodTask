@@ -19,15 +19,16 @@ import com.example.domain.model.Product;
 import com.example.foodtask.R;
 import com.example.foodtask.core.BaseFragment;
 import com.example.foodtask.di.DI;
-import com.example.foodtask.di.module.ProductModule;
+import com.example.foodtask.utils.image.loader.IImageLoader;
 import com.example.foodtask.view.adapter.products.IProductsPresenter;
 import com.example.foodtask.view.adapter.products.ProductAdapter;
 import com.example.foodtask.view.dialog.ISelectQuantityPresenter;
 import com.example.foodtask.view.dialog.SelectQuantityDialog;
 import com.example.foodtask.view.utils.SpacingItemDecorator;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
-import toothpick.Scope;
 import toothpick.Toothpick;
 
 import static com.example.foodtask.di.DI.PRODUCT_SCOPE;
@@ -38,6 +39,9 @@ public class CountryProductsFragment extends BaseFragment implements CountryProd
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.rv_fr_country_products)
     RecyclerView recyclerView;
+
+    @Inject
+    IImageLoader imageLoader;
 
     @InjectPresenter
     CountryProductsPresenter presenter;
@@ -59,11 +63,17 @@ public class CountryProductsFragment extends BaseFragment implements CountryProd
     public CountryProductsFragment() {
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toothpick.inject(this, Toothpick.openScope(DI.APP_SCOPE));
+    }
+
     @ProvidePresenter
     CountryProductsPresenter providePresenter() {
-        Scope scope = Toothpick.openScopes(DI.APP_SCOPE, PRODUCT_SCOPE);
-        scope.installModules(new ProductModule());
-        presenter = scope.getInstance(CountryProductsPresenter.class);
+        CountryProductsPresenter presenter = Toothpick
+                .openScopes(DI.APP_SCOPE, PRODUCT_SCOPE)
+                .getInstance(CountryProductsPresenter.class);
         presenter.setCountry(country);
         return presenter;
     }
@@ -82,9 +92,9 @@ public class CountryProductsFragment extends BaseFragment implements CountryProd
 
     @Override
     public void setProductsListPresenter(IProductsPresenter productsPresenter) {
-        productsAdapter = new ProductAdapter(productsPresenter);
+        productsAdapter = new ProductAdapter(productsPresenter, imageLoader);
         recyclerView.setAdapter(productsAdapter);
-        recyclerView.addItemDecoration(new SpacingItemDecorator(5,16, true,
+        recyclerView.addItemDecoration(new SpacingItemDecorator(5, 16, true,
                 getResources().getDisplayMetrics().density));
     }
 

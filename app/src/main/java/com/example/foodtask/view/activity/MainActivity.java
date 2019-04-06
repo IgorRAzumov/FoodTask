@@ -10,11 +10,16 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.foodtask.R;
 import com.example.foodtask.core.IFragmentContainer;
+import com.example.foodtask.di.DI;
+import com.example.foodtask.di.module.ProductModule;
 import com.example.foodtask.view.frgment.order.OrderFragment;
 import com.example.foodtask.view.frgment.products.MainProductsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import toothpick.Toothpick;
+
+import static com.example.foodtask.di.DI.PRODUCT_SCOPE;
 
 public class MainActivity extends MvpAppCompatActivity implements MainView, IFragmentContainer {
     @BindView(R.id.dl_root_drawer_layout)
@@ -30,6 +35,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, IFra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        Toothpick.openScopes(DI.APP_SCOPE, PRODUCT_SCOPE).installModules(new ProductModule());
 
         initNavigationView();
     }
@@ -60,6 +67,11 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, IFra
                 .commit();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toothpick.closeScope(DI.PRODUCT_SCOPE);
+    }
 
     private void initNavigationView() {
         navigationView.setNavigationItemSelectedListener(menuItem -> {

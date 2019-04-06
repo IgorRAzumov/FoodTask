@@ -4,18 +4,17 @@ import com.example.domain.model.OrderItem;
 import com.example.domain.model.Product;
 
 import io.reactivex.Observable;
-import io.reactivex.subjects.ReplaySubject;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
 
 public class CreateOrderInteractor implements ICreateOrderInteractor {
-    private final ReplaySubject<OrderItem> orderItemSubject;
-
-    public CreateOrderInteractor() {
-        orderItemSubject = ReplaySubject.create();
-    }
-
+    private Subject<OrderItem> orderItemSubject;
 
     @Override
     public Observable<OrderItem> ordersItemsObservable() {
+        if (orderItemSubject == null) {
+            orderItemSubject = PublishSubject.create();
+        }
         return orderItemSubject;
     }
 
