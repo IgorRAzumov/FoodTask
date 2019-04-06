@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 
 import com.example.foodtask.R;
 
-public class IOrderAdapter extends RecyclerView.Adapter<OrderViewHolder> {
-    private final IOrderPresenter orderPresenter;
+public class OrderItemsAdapter extends RecyclerView.Adapter<OrderViewHolder> {
+    private final IOrderItemsPresenter orderPresenter;
 
-    public IOrderAdapter(IOrderPresenter orderPresenter) {
+    public OrderItemsAdapter(IOrderItemsPresenter orderPresenter) {
         this.orderPresenter = orderPresenter;
     }
 

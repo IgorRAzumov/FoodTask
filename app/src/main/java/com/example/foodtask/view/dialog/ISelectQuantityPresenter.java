@@ -5,7 +5,7 @@ public interface ISelectQuantityPresenter {
 
     void onAddButtonClick();
 
-    void onViewCreated(ISelectQuantityView selectQuantityView);
+    void onViewAttached(ISelectQuantityView selectQuantityView);
 
     void onViewDetach();
 }

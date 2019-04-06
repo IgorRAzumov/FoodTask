@@ -1,6 +1,6 @@
 package com.example.domain.model;
 
-public class Country {
+public final class Country {
     private final long id;
     private final String name;
 

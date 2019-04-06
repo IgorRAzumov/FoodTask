@@ -79,7 +79,7 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
     @Override
     public void onStart() {
         super.onStart();
-        presenter.onViewCreated(this);
+        presenter.onViewAttached(this);
     }
 
     @Override

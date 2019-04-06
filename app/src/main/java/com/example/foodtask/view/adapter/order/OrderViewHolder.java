@@ -10,7 +10,7 @@ import com.example.foodtask.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-final class OrderViewHolder extends RecyclerView.ViewHolder implements IOrderItem {
+final class OrderViewHolder extends RecyclerView.ViewHolder implements IOrderItemView {
     @BindView(R.id.tv_it_order_product)
     TextView productText;
     @BindView(R.id.tv_it_order_sum)

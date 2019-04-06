@@ -1,6 +1,6 @@
 package com.example.domain.model;
 
-public class Product {
+public final class Product {
     private final long id;
     private final int country;
     private final int category;
@@ -40,6 +40,10 @@ public class Product {
 
     public int getCategory() {
         return category;
+    }
+
+    public int getUnit() {
+        return 0;
     }
 
     public final static class Builder {
