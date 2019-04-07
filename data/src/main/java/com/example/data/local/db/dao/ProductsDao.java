@@ -18,4 +18,8 @@ public interface ProductsDao {
 
     @Query("SELECT * from product")
     Flowable<List<ProductEntity>> getAllProducts();
+
+
+    @Query("SELECT * from product where country ==:countryId")
+    Flowable<List<ProductEntity>> loadProductById(long countryId);
 }

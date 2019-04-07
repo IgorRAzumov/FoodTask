@@ -12,6 +12,7 @@ import com.example.foodtask.view.adapter.products.IProductsPresenter;
 import com.example.foodtask.view.dialog.BaseSelectQuantityPresenter;
 import com.example.foodtask.view.dialog.ISelectQuantityPresenter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,7 +113,7 @@ public class CountryProductsPresenter extends BasePresenter<CountryProductsView>
     private ISelectQuantityPresenter getSelectQuantityPresenter(Product product) {
         return new BaseSelectQuantityPresenter(product) {
             @Override
-            protected void quantitySelected(float selectedWeight, double sum) {
+            protected void quantitySelected(float selectedWeight, BigDecimal sum) {
                 createOrderInteractor.orderItemAdded(product,selectedWeight,sum);
             }
         };

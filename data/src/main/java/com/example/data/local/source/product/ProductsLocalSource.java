@@ -22,4 +22,9 @@ public final class ProductsLocalSource implements IProductsLocalSource {
     public Flowable<List<ProductEntity>> loadProducts() {
         return productsDao.getAllProducts();
     }
+
+    @Override
+    public Flowable<List<ProductEntity>> loadProductsByCountry(long countryId) {
+        return productsDao.loadProductById(countryId);
+    }
 }

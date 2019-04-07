@@ -3,6 +3,8 @@ package com.example.domain.interactor.order;
 import com.example.domain.model.OrderItem;
 import com.example.domain.model.Product;
 
+import java.math.BigDecimal;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
@@ -19,7 +21,7 @@ public final class CreateOrderInteractor implements ICreateOrderInteractor {
     }
 
     @Override
-    public void orderItemAdded(Product product, float selectedWeight, double sum) {
+    public void orderItemAdded(Product product, float selectedWeight, BigDecimal sum) {
         orderItemSubject.onNext(new OrderItem(selectedWeight, sum, product));
     }
 

@@ -8,5 +8,7 @@
     <color name="gray_46">#757575</color>
     <color name="gray_13">#212121</color>
     <color name="color_yellow_selected">#ffd972</color>
-
+    <color name="gray_84">#D6D6D6</color>
+    <color name="azure">#f4f5f5</color>
+    <color name="gray_74">#bdbdbd</color>
 </resources>

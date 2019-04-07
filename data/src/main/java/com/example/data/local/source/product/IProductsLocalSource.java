@@ -8,4 +8,6 @@ import io.reactivex.Flowable;
 
 public interface IProductsLocalSource {
     Flowable<List<ProductEntity>> loadProducts();
+
+    Flowable<List<ProductEntity>> loadProductsByCountry(long countryId);
 }

@@ -4,6 +4,7 @@ import com.example.domain.model.Product;
 import com.example.foodtask.view.adapter.quantity_calc.IQuantityCalcItem;
 import com.example.foodtask.view.adapter.quantity_calc.IQuantityCalcPresenter;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -31,14 +32,14 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
 
     private ISelectQuantityView selectQuantityView;
     private float selectedWeight;
-    private double sum;
+    private BigDecimal sum;
     private String selectedQuantity;
 
     protected BaseSelectQuantityPresenter(Product product) {
         this.product = product;
     }
 
-    protected abstract void quantitySelected(float selectedWeight, double sum);
+    protected abstract void quantitySelected(float selectedWeight, BigDecimal sum);
 
     @Override
     public void onAbortClick() {
@@ -50,12 +51,18 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
     public void onViewAttached(ISelectQuantityView selectQuantityView) {
         this.selectQuantityView = selectQuantityView;
         this.selectQuantityView.showQuantitySelection(getQuantityCalcPresenter());
+        this.selectQuantityView.setProductName(product.getName());
+        this.selectQuantityView.setCurrency(product.getCurrency());
+        this.selectQuantityView.setWeightUnit(product.getWeightUnit());
         selectedQuantity = "0";
     }
 
     @Override
     public void onAddButtonClick() {
-        quantitySelected(selectedWeight, sum);
+        if (selectedQuantity.equals("0")) {
+            return;
+        }
+        quantitySelected(Float.parseFloat(selectedQuantity.replace(',', '.')), sum);
     }
 
     @Override
@@ -99,10 +106,10 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
 
 
     private void calculateNewTotal() {
-        double sum = Double.parseDouble(selectedQuantity.replace(COMMA_CHARACTER, '.'));
-        this.sum = sum * product.getPrice();
+        BigDecimal sum = new BigDecimal(selectedQuantity.replace(COMMA_CHARACTER, '.'));
+        this.sum = sum.multiply(product.getPrice());
 
-        selectQuantityView.setTotal( String.format(Locale.getDefault(),"%.2f", this.sum),
+        selectQuantityView.setTotal(String.format(Locale.getDefault(), "%.2f", this.sum),
                 selectedQuantity);
 
     }

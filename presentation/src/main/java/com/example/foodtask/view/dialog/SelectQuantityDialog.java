@@ -32,12 +32,21 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
     TextView productText;
     @BindView(R.id.tv_dg_select_quantity_sum)
     TextView sumText;
+    @BindView(R.id.tv_dg_select_quantity_currency)
+    TextView currencyText;
     @BindView(R.id.tv_dg_select_quantity_weight_total)
-    TextView totalWeigthText;
+    TextView totalWeightText;
+    @BindView(R.id.tv_dg_select_quantity_weight_total_unit)
+    TextView totalWeightUnitText;
+    @BindView(R.id.tv_dg_select_quantity_weight_unit)
+    TextView selectQuantityWeigthUnit;
     @BindView(R.id.tv_dg_select_quantity_weight)
-    TextView weigthText;
+    TextView weightText;
     @BindView(R.id.rv_dg_select_quantity_product)
     RecyclerView calcRecycler;
+
+    private ISelectQuantityPresenter presenter;
+    private QuantityCalcAdapter adapter;
 
     private Unbinder unbinder;
 
@@ -57,8 +66,6 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
         presenter.onAddButtonClick();
     }
 
-    private ISelectQuantityPresenter presenter;
-    private QuantityCalcAdapter adapter;
 
     @NotNull
     @SuppressLint("InflateParams")
@@ -73,24 +80,21 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
         View view = activity.getLayoutInflater().inflate(R.layout.dialog_select_quantity, null);
         unbinder = ButterKnife.bind(this, view);
         builder.setView(view);
+        presenter.onViewAttached(this);
         return builder.create();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onViewAttached(this);
-    }
 
     @Override
     public void onStop() {
         super.onStop();
-        presenter.onViewDetach();
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        presenter.onViewDetach();
         unbinder.unbind();
     }
 
@@ -103,26 +107,42 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
     public void showQuantitySelection(IQuantityCalcPresenter quantityCalcPresenter) {
         calcRecycler.setHasFixedSize(true);
         calcRecycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        calcRecycler.setAdapter(new QuantityCalcAdapter(quantityCalcPresenter));
+        calcRecycler.setAdapter(adapter = new QuantityCalcAdapter(quantityCalcPresenter));
 
     }
 
     @Override
     public void commaAdded(String selectedQuantity) {
-        weigthText.setText(selectedQuantity);
+        weightText.setText(selectedQuantity);
     }
 
     @Override
     public void selectionCleared() {
-        weigthText.setText("0");
-        totalWeigthText.setText("0");
+        weightText.setText("0");
+        totalWeightText.setText("0");
         sumText.setText("0");
     }
 
     @Override
     public void setTotal(String totalSum, String totalWeight) {
-        weigthText.setText(totalWeight);
-        totalWeigthText.setText(totalWeight);
+        weightText.setText(totalWeight);
+        totalWeightText.setText(totalWeight);
         sumText.setText(totalSum);
+    }
+
+    @Override
+    public void setProductName(String name) {
+        productText.setText(name);
+    }
+
+    @Override
+    public void setCurrency(String currency) {
+        currencyText.setText(currency);
+    }
+
+    @Override
+    public void setWeightUnit(String weightUnit) {
+        totalWeightUnitText.setText(weightUnit);
+        selectQuantityWeigthUnit.setText(weightUnit);
     }
 }

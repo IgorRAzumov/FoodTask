@@ -12,4 +12,10 @@ public interface ISelectQuantityView {
     void selectionCleared();
 
     void setTotal(String totalSum, String totalWeight);
+
+    void setProductName(String name);
+
+    void setCurrency(String currency);
+
+    void setWeightUnit(String weightUnit);
 }

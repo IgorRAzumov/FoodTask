@@ -3,7 +3,12 @@ package com.example.data.local.db.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+
+import com.example.data.local.db.converter.BigDecimalConverter;
+
+import java.math.BigDecimal;
 
 @Entity(tableName = "product")
 public final class ProductEntity {
@@ -15,7 +20,8 @@ public final class ProductEntity {
     private int category;
 
     @ColumnInfo(name = "price")
-    private double price;
+    @TypeConverters(BigDecimalConverter.class)
+    private BigDecimal price;
 
     @ColumnInfo(name = "country")
     private int country;
@@ -26,12 +32,25 @@ public final class ProductEntity {
     @ColumnInfo(name = "image")
     private String image;
 
-    public ProductEntity(@NonNull String name, String image, double price, int country, int category) {
-        this.name = name;
+    @ColumnInfo(name = "currency")
+    private String currency;
+
+    @ColumnInfo(name = "weight_unit")
+    private String weightUnit;
+
+    @ColumnInfo(name = "weight_unit_quantity")
+    private int weightUnitQuantity;
+
+    public ProductEntity( int category,  int country, int weightUnitQuantity,
+                          BigDecimal price,String name, String image, String currency, String weightUnit) {
+        this.category = category;
         this.price = price;
         this.country = country;
+        this.name = name;
         this.image = image;
-        this.category = category;
+        this.currency = currency;
+        this.weightUnit = weightUnit;
+        this.weightUnitQuantity = weightUnitQuantity;
     }
 
     public long getId() {
@@ -47,7 +66,7 @@ public final class ProductEntity {
         return image;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -61,5 +80,17 @@ public final class ProductEntity {
 
     public int getCategory() {
         return category;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getWeightUnit() {
+        return weightUnit;
+    }
+
+    public int getWeightUnitQuantity() {
+        return weightUnitQuantity;
     }
 }

@@ -1,12 +1,17 @@
 package com.example.domain.model;
 
+import java.math.BigDecimal;
+
 public final class Product {
     private final long id;
     private final int country;
     private final int category;
-    private final double price;
+    private final BigDecimal price;
     private final String image;
     private final String name;
+    private final String currency;
+    private final String weightUnit;
+    private final int weightUnitQuantity;
 
 
     private Product(Builder builder) {
@@ -16,6 +21,9 @@ public final class Product {
         this.image = builder.image;
         this.name = builder.name;
         this.category = builder.category;
+        this.currency = builder.currency;
+        this.weightUnit = builder.weightUnit;
+        this.weightUnitQuantity = builder.weightUnitQuantity;
     }
 
     public long getId() {
@@ -26,7 +34,7 @@ public final class Product {
         return country;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -42,17 +50,28 @@ public final class Product {
         return category;
     }
 
-    public int getUnit() {
-        return 0;
+    public int getWeightUnitQuantity() {
+        return weightUnitQuantity;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getWeightUnit() {
+        return weightUnit;
     }
 
     public final static class Builder {
+        public int weightUnitQuantity;
         private int category;
         private long id;
         private int country;
-        private double price;
+        private BigDecimal price;
         private String image;
         private String name;
+        public String currency;
+        public String weightUnit;
 
         public Builder setId(long id) {
             this.id = id;
@@ -64,13 +83,18 @@ public final class Product {
             return this;
         }
 
-        public Builder setPrice(double price) {
+        public Builder setPrice(BigDecimal price) {
             this.price = price;
             return this;
         }
 
         public Builder setImage(String image) {
             this.image = image;
+            return this;
+        }
+
+        public Builder setWeightUnit(String weightUnit) {
+            this.weightUnit = weightUnit;
             return this;
         }
 
@@ -81,6 +105,16 @@ public final class Product {
 
         public Builder setCategory(int category) {
             this.category = category;
+            return this;
+        }
+
+        public Builder setCurrency(String currency) {
+            this.currency = currency;
+            return this;
+        }
+
+        public Builder setWeightUnitQuantity(int weightUnitQuantity) {
+            this.weightUnitQuantity = weightUnitQuantity;
             return this;
         }
 

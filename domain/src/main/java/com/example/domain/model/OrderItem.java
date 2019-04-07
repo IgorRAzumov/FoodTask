@@ -1,11 +1,13 @@
 package com.example.domain.model;
 
+import java.math.BigDecimal;
+
 public final class OrderItem {
     private final float weight;
-    private final double sum;
+    private final BigDecimal sum;
     private final Product product;
 
-    public OrderItem(float weight, double sum, Product product) {
+    public OrderItem(float weight, BigDecimal sum, Product product) {
         this.weight = weight;
         this.sum = sum;
         this.product = product;
@@ -15,19 +17,27 @@ public final class OrderItem {
         return weight;
     }
 
-    public double getSum() {
+    public BigDecimal getSum() {
         return sum;
     }
 
-    public double getUnit() {
-        return product.getUnit();
-    }
-
-    public double getPrice() {
-        return product.getPrice();
-    }
-
-   public String getName() {
+    public String getProductName() {
         return product.getName();
+    }
+
+    public String getProductWeightUnit() {
+        return product.getWeightUnit();
+    }
+
+    public String getCurrency() {
+        return product.getCurrency();
+    }
+
+    public int getWeightUnitQuantity() {
+        return product.getWeightUnitQuantity();
+    }
+
+    public BigDecimal getPricePerUnit() {
+        return product.getPrice();
     }
 }

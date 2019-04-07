@@ -10,6 +10,7 @@ import com.example.data.local.db.ProductsDatabase;
 import com.example.data.local.db.entity.CountryEntity;
 import com.example.data.local.db.entity.ProductEntity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -47,13 +48,13 @@ public class ProductsDatabaseProvider implements Provider<ProductsDatabase> {
 
     private ProductEntity[] createDummyData() {
         List<ProductEntity> productEntities = new ArrayList<>();
-        productEntities.add(new ProductEntity("Свекла", "file:///android_asset/beet.jpg", 42, 1, 1));
-        productEntities.add(new ProductEntity("Мморковь", "file:///android_asset/carrot.jpg", 50, 2, 1));
-        productEntities.add(new ProductEntity("Лук", "file:///android_asset/onion.jpg", 77, 1, 2));
-        productEntities.add(new ProductEntity("Петрушка", "file:///android_asset/parsley.jpg", 23, 2, 2));
-        productEntities.add(new ProductEntity("Укроп", "file:///android_asset/dill.jpg", 43, 1, 1));
-        productEntities.add(new ProductEntity("Помидоры", "file:///android_asset/tomato.jpg", 62, 2, 2));
-        productEntities.add(new ProductEntity("Огурцы", "file:///android_asset/cucumber.jpg", 32, 1, 1));
+        productEntities.add(new ProductEntity(1, 1, 1, new BigDecimal(52.5), "Свекла", "file:///android_asset/beet.jpg", "P", "Кг"));
+        productEntities.add(new ProductEntity(1, 2, 1, new BigDecimal(65), "Мморковь", "file:///android_asset/carrot.jpg", "P", "Кг"));
+        productEntities.add(new ProductEntity(1, 2, 1, new BigDecimal(55.3), "Лук", "file:///android_asset/onion.jpg", "P", "Кг"));
+        productEntities.add(new ProductEntity(2, 2, 1,new BigDecimal(500), "Петрушка", "file:///android_asset/parsley.jpg", "P", "Кг"));
+        productEntities.add(new ProductEntity(2, 1, 1,new BigDecimal(435), "Укроп", "file:///android_asset/dill.jpg", "P", "Кг"));
+        productEntities.add(new ProductEntity(1, 1, 1,new BigDecimal(256), "Помидоры", "file:///android_asset/tomato.jpg", "P", "Кг"));
+        productEntities.add(new ProductEntity(1, 1, 1,new BigDecimal(500), "Огурцы", "file:///android_asset/cucumber.jpg", "P", "Кг"));
         return productEntities.toArray(new ProductEntity[0]);
     }
 

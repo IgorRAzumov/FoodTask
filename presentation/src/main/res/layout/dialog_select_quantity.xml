@@ -1,106 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
     android:layout_width="400dp"
-    android:layout_gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="500dp"
+    android:layout_gravity="center">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="400dp"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_dg_select_quantity_product"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:textColor="@color/gray_46"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Морковь" />
 
         <TextView
             android:id="@+id/tv_dg_select_quantity_sum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             android:textColor="@color/gray_46"
-            tools:text="600,00 Р" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_dg_select_quantity_currency"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dg_select_quantity_currency"
+            android:text="@string/common_zero"/>
 
         <TextView
+            android:id="@+id/tv_dg_select_quantity_currency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:textColor="@color/gray_46"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            tools:text="Р" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:text="@string/dg_select_quantity_total_divider"
-            android:textColor="#757575" />
+            android:textColor="#757575"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_dg_select_quantity_weight_total"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dg_select_quantity_weight_total" />
 
         <TextView
             android:id="@+id/tv_dg_select_quantity_weight_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
             android:textColor="@color/gray_46"
-            tools:text="12.0 КГ" />
-    </LinearLayout>
+            app:layout_constraintEnd_toStartOf="@+id/tv_dg_select_quantity_weight_total_unit"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/common_zero"/>
 
-    <TextView
-        android:id="@+id/tv_dg_select_quantity_weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/gray_13"
-        tools:text="12 КГ" />
+        <TextView
+            android:id="@+id/tv_dg_select_quantity_weight_total_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textAllCaps="true"
+            android:textColor="@color/gray_46"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_dg_select_quantity_weight_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="КГ" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/color_blue_selected" />
+        <TextView
+            android:id="@+id/tv_dg_select_quantity_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="4dp"
+            android:text="@string/common_zero"
+            android:textColor="@color/gray_13"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_dg_select_quantity_weight_unit"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dg_select_quantity_weight_unit" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_dg_select_quantity_product"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingTop="12dp" />
+        <TextView
+            android:id="@+id/tv_dg_select_quantity_weight_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textAllCaps="true"
+            android:textColor="@color/gray_13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dg_select_quantity_weight_total"
+            tools:text="КГ" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_gravity="end">
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/color_blue_selected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dg_select_quantity_weight_unit" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_dg_select_quantity_product"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:clipToPadding="false"
+            android:paddingTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
 
         <Button
             android:id="@+id/bt_dg_select_quantity_abort"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/common_abort"
             android:textColor="@color/color_blue_selected"
-            android:text="@string/common_abort" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bt_dg_select_quantity_add"
+            app:layout_constraintTop_toBottomOf="@+id/rv_dg_select_quantity_product" />
 
         <Button
             android:id="@+id/bt_dg_select_quantity_add"
-            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:background="@color/color_blue_selected"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/pay_button_background"
             android:text="@string/common_add"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:textColor="@color/white"
+            app:layout_constraintBaseline_toBaselineOf="@+id/bt_dg_select_quantity_abort"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-</LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -25,4 +25,6 @@
     <string name="error_implement_fragment_container">fragment must implement IFragmentContainer</string>
     <string name="order_empty_description">Добавьте товары из каталога, а затем выберите способ оплаты</string>
     <string name="order_no_items">Товаров нет</string>
+    <string name="common_zero">0</string>
+    <string name="order_payment_success">Платеж успешно совершен</string>
 </resources>
