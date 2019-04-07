@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 
 @Entity(tableName = "country")
-public class CountryEntity {
+public final class CountryEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;

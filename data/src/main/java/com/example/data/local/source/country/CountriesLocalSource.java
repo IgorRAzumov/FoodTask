@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 
-public class CountriesLocalSource implements ICountriesLocalSource {
+public final class CountriesLocalSource implements ICountriesLocalSource {
     private final CountriesDao countriesDao;
 
     @Inject

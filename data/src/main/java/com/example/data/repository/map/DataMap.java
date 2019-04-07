@@ -8,7 +8,7 @@ import com.example.domain.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataMap implements IDataMap {
+public final class DataMap implements IDataMap {
     @Override
     public List<Product> mapToProducts(List<ProductEntity> productEntities) {
         List<Product> products = new ArrayList<>();

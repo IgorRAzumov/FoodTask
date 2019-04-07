@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 @Entity(tableName = "product")
-public class ProductEntity {
+public final class ProductEntity {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;

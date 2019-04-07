@@ -7,7 +7,7 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
-public class CreateOrderInteractor implements ICreateOrderInteractor {
+public final class CreateOrderInteractor implements ICreateOrderInteractor {
     private Subject<OrderItem> orderItemSubject;
 
     @Override

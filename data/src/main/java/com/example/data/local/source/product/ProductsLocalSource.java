@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import io.reactivex.Flowable;
 
 
-public class ProductsLocalSource implements IProductsLocalSource {
+public final class ProductsLocalSource implements IProductsLocalSource {
     private final ProductsDao productsDao;
 
     @Inject

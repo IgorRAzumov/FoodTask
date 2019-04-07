@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 
-public class LoadCountriesInteractor implements ILoadCountriesInteractor {
+public final class LoadCountriesInteractor implements ILoadCountriesInteractor {
     private final IProductsRepository repository;
 
     @Inject
