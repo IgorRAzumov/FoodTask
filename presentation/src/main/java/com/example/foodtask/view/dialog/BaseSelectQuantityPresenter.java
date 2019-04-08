@@ -11,9 +11,12 @@ import java.util.Map;
 import java.util.Objects;
 
 public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPresenter {
-    private final Character CLEAR_CHARACTER = 'X';
-    private final Character COMMA_CHARACTER = ',';
-    private final Map<Integer, Character> CONTROLS = new HashMap<Integer, Character>() {{
+    private static final int MAX_DIGITS_AFTER_COMMA = 2;
+    private static final Character ZERO_CHARACTER = '0';
+    private static final char DOT_CHARACTER = '.';
+    private static final Character CLEAR_CHARACTER = 'X';
+    private static final Character COMMA_CHARACTER = ',';
+    private static final Map<Integer, Character> CONTROLS = new HashMap<Integer, Character>() {{
         put(0, '1');
         put(1, '2');
         put(2, '3');
@@ -23,13 +26,15 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
         put(6, '7');
         put(7, '8');
         put(8, '9');
-        put(9, ',');
-        put(10, '0');
-        put(11, 'X');
+        put(9, COMMA_CHARACTER);
+        put(10, ZERO_CHARACTER);
+        put(11, CLEAR_CHARACTER);
     }};
 
     private final Product product;
 
+    private int digitsAfterComma;
+    private boolean commaAdded;
     private ISelectQuantityView selectQuantityView;
     private BigDecimal sum;
     private String selectedQuantity;
@@ -53,15 +58,15 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
         this.selectQuantityView.setProductName(product.getName());
         this.selectQuantityView.setCurrency(product.getCurrency());
         this.selectQuantityView.setWeightUnit(product.getWeightUnit());
-        selectedQuantity = "0";
+        selectedQuantity = ZERO_CHARACTER.toString();
     }
 
     @Override
     public void onAddButtonClick() {
-        if (selectedQuantity.equals("0")) {
+        if (selectedQuantity.equals(ZERO_CHARACTER.toString())) {
             return;
         }
-        quantitySelected(Float.parseFloat(selectedQuantity.replace(',', '.')), sum);
+        quantitySelected(Float.parseFloat(selectedQuantity.replace(COMMA_CHARACTER, DOT_CHARACTER)), sum);
         selectQuantityView.exit();
     }
 
@@ -72,6 +77,8 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
 
     private IQuantityCalcPresenter getQuantityCalcPresenter() {
         return new IQuantityCalcPresenter() {
+
+
             @Override
             public int getItemCount() {
                 return CONTROLS.size();
@@ -97,11 +104,28 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
                 } else if (character.equals(COMMA_CHARACTER)) {
                     addCommaToCalcResult(character);
                 } else {
-                    addDigitToQuantityResult(character);
-                    calculateNewTotal();
+                    addCharacterToDigitString(character);
                 }
             }
         };
+    }
+
+    private void addCharacterToDigitString(Character character) {
+        if (commaAdded) {
+            addWhenCommaContains(character);
+        } else {
+            addDigitToQuantityResult(character);
+        }
+
+        calculateNewTotal();
+    }
+
+    private void addWhenCommaContains(Character character) {
+        if (digitsAfterComma >= MAX_DIGITS_AFTER_COMMA) {
+            return;
+        }
+        selectedQuantity += character;
+        digitsAfterComma++;
     }
 
 
@@ -115,8 +139,8 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
     }
 
     private void addDigitToQuantityResult(Character character) {
-        if (selectedQuantity.equals("0")) {
-            selectedQuantity = selectedQuantity.replace("0", "");
+        if (selectedQuantity.equals(ZERO_CHARACTER.toString())) {
+            selectedQuantity = selectedQuantity.replace(ZERO_CHARACTER.toString(), "");
         }
         selectedQuantity += character;
     }
@@ -125,13 +149,14 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
         if (selectedQuantity.lastIndexOf(character) > 0) {
             return;
         }
-
+        commaAdded = true;
         selectedQuantity += character;
         selectQuantityView.commaAdded(selectedQuantity);
     }
 
     private void clearCalcQuantityResult() {
-        selectedQuantity = "0";
+        selectedQuantity = ZERO_CHARACTER.toString();
+        commaAdded = false;
         selectQuantityView.selectionCleared();
     }
 }
