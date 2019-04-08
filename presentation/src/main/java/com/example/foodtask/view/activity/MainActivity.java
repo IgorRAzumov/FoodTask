@@ -84,8 +84,10 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, IFra
 
     private void initNavigationView() {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
-            presenter.menuItemClick();
+            presenter.onExitClick();
             return true;
         });
+        navigationView.findViewById(R.id.main_nav_header_exit).setOnClickListener(v->
+                presenter.onExitClick());
     }
 }

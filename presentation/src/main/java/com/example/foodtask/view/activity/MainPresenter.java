@@ -13,7 +13,7 @@ public final class MainPresenter extends MvpPresenter<MainView> {
         getViewState().showOrderScreen();
     }
 
-    void menuItemClick() {
+    void onExitClick() {
         getViewState().closeMenu();
     }
 }
