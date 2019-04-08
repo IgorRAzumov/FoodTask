@@ -87,7 +87,5 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, IFra
             presenter.onExitClick();
             return true;
         });
-        navigationView.findViewById(R.id.main_nav_header_exit).setOnClickListener(v->
-                presenter.onExitClick());
     }
 }
