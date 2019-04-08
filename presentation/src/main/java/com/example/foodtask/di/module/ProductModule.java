@@ -11,7 +11,7 @@ import com.example.domain.interactor.products.load.LoadProductsInteractor;
 
 import toothpick.config.Module;
 
-public class ProductModule extends Module {
+public final class ProductModule extends Module {
 
     public ProductModule() {
         bind(ILoadProductsInteractor.class).to(LoadProductsInteractor.class);

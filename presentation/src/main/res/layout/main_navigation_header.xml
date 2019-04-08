@@ -5,7 +5,7 @@
     android:id="@+id/nav_header"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/colorPrimary"
+    android:background="@color/color_primary"
     android:orientation="vertical"
     tools:ignore="ContentDescription">
 
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/color_primary"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView

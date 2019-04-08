@@ -8,7 +8,7 @@ import com.example.foodtask.view.adapter.order.IOrderItemsPresenter;
 
 import java.math.BigDecimal;
 
-public interface OrderView  extends MvpView {
+interface OrderView  extends MvpView {
     void setOrdersItemPresenter(IOrderItemsPresenter orderItemsPresenter);
 
     void orderItemAdded(OrderItem orderItem, int itemCount);

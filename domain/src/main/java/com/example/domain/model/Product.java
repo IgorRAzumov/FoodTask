@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 public final class Product {
     private final long id;
     private final int country;
-    private final int category;
     private final BigDecimal price;
     private final String image;
     private final String name;
@@ -20,7 +19,6 @@ public final class Product {
         this.price = builder.price;
         this.image = builder.image;
         this.name = builder.name;
-        this.category = builder.category;
         this.currency = builder.currency;
         this.weightUnit = builder.weightUnit;
         this.weightUnitQuantity = builder.weightUnitQuantity;
@@ -46,10 +44,6 @@ public final class Product {
         return name;
     }
 
-    public int getCategory() {
-        return category;
-    }
-
     public int getWeightUnitQuantity() {
         return weightUnitQuantity;
     }
@@ -63,15 +57,14 @@ public final class Product {
     }
 
     public final static class Builder {
-        public int weightUnitQuantity;
-        private int category;
+        private int weightUnitQuantity;
         private long id;
         private int country;
         private BigDecimal price;
         private String image;
         private String name;
-        public String currency;
-        public String weightUnit;
+        private String currency;
+        private String weightUnit;
 
         public Builder setId(long id) {
             this.id = id;
@@ -100,11 +93,6 @@ public final class Product {
 
         public Builder setName(String name) {
             this.name = name;
-            return this;
-        }
-
-        public Builder setCategory(int category) {
-            this.category = category;
             return this;
         }
 

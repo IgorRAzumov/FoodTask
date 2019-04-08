@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="digits_after_comma">2</integer>
+    <integer name="default_recycler_spacing">16</integer>
+    <integer name="order_fr_orders_span_count">1</integer>
+    <integer name="product_page_fr_span_count">5</integer>
 </resources>

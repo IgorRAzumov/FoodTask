@@ -2,8 +2,11 @@ package com.example.data.local.db.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
 
 
 @Entity(tableName = "country")
@@ -15,6 +18,13 @@ public final class CountryEntity {
     @ColumnInfo(name = "name")
     private String name;
 
+    @Ignore
+    public CountryEntity(int id, @NonNull String name) {
+        this.name = name;
+        this.id=id;
+    }
+
+
     public CountryEntity(@NonNull String name) {
         this.name = name;
     }
@@ -23,6 +33,7 @@ public final class CountryEntity {
         return id;
     }
 
+    @NotNull
     public String getName() {
         return name;
     }

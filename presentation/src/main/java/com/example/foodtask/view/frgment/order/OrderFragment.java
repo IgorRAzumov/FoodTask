@@ -2,6 +2,7 @@ package com.example.foodtask.view.frgment.order;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -98,10 +99,14 @@ public class OrderFragment extends BaseFragment implements OrderView {
         if (context == null) {
             return;
         }
+        Resources resources = getResources();
+
         orderItemsAdapter = new OrderItemsAdapter(orderItemsPresenter);
         orderItemsRecycler.setAdapter(orderItemsAdapter);
-        orderItemsRecycler.addItemDecoration(new SpacingItemDecorator(1, 16, false,
-                getResources().getDisplayMetrics().density));
+        orderItemsRecycler.addItemDecoration(new SpacingItemDecorator(
+                resources.getInteger(R.integer.order_fr_orders_span_count),
+                resources.getInteger(R.integer.default_recycler_spacing), false,
+                resources.getDisplayMetrics().density));
         orderItemsRecycler.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
     }
 
@@ -182,6 +187,6 @@ public class OrderFragment extends BaseFragment implements OrderView {
 
     private void initRecycler() {
         orderItemsRecycler.setHasFixedSize(true);
-        orderItemsRecycler.setLayoutManager( orderRecyclerManager = new LinearLayoutManager(getContext()));
+        orderItemsRecycler.setLayoutManager(orderRecyclerManager = new LinearLayoutManager(getContext()));
     }
 }

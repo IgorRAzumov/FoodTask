@@ -1,10 +1,9 @@
 package com.example.foodtask.view.custom;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 
-public class SquareImageView extends android.support.v7.widget.AppCompatImageView {
+public final class SquareImageView extends android.support.v7.widget.AppCompatImageView {
         public SquareImageView(Context context) {
             super(context);
         }
@@ -17,11 +16,7 @@ public class SquareImageView extends android.support.v7.widget.AppCompatImageVie
             super(context, attrs, defStyle);
         }
 
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-        }
-
-        @Override
+    @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); // Snap to width

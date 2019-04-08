@@ -22,7 +22,7 @@ import io.reactivex.Flowable;
 import timber.log.Timber;
 
 @InjectViewState
-public class CountryProductsPresenter extends BasePresenter<CountryProductsView> {
+public final class CountryProductsPresenter extends BasePresenter<CountryProductsView> {
     @Inject
     ILoadProductsInteractor loadProductsInteractor;
     @Inject
@@ -86,7 +86,7 @@ public class CountryProductsPresenter extends BasePresenter<CountryProductsView>
                     Product product = products.get(position);
                     productItem.bindProductName(product.getName());
                     productItem.bindProductImage(product.getImage());
-                    productItem.bindProductCategory(product.getCategory());
+                    productItem.bindProductCategory(product.getCountry());
                 }
 
                 @Override
@@ -102,8 +102,7 @@ public class CountryProductsPresenter extends BasePresenter<CountryProductsView>
                 @Override
                 public void onItemClick(int position) {
                     Product product = products.get(position);
-                    getViewState().showSelectQuantityDialog(getSelectQuantityPresenter(product),
-                            product);
+                    getViewState().showSelectQuantityDialog(getSelectQuantityPresenter(product));
                 }
             };
         }

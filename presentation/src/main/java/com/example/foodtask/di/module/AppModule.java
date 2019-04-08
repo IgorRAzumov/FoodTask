@@ -23,7 +23,7 @@ import com.example.foodtask.utils.sheduler.SchedulersProvider;
 
 import toothpick.config.Module;
 
-public class AppModule extends Module {
+public final class AppModule extends Module {
 
     public AppModule(Context context) {
         bind(Context.class).toInstance(context);

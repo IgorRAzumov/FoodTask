@@ -1,6 +1,7 @@
 package com.example.foodtask.view.frgment.products.page;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +16,6 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.domain.model.Country;
-import com.example.domain.model.Product;
 import com.example.foodtask.R;
 import com.example.foodtask.core.BaseFragment;
 import com.example.foodtask.di.DI;
@@ -92,14 +92,17 @@ public class CountryProductsFragment extends BaseFragment implements CountryProd
 
     @Override
     public void setProductsListPresenter(IProductsPresenter productsPresenter) {
+        Resources resources = getResources();
         productsAdapter = new ProductAdapter(productsPresenter, imageLoader);
         recyclerView.setAdapter(productsAdapter);
-        recyclerView.addItemDecoration(new SpacingItemDecorator(5, 16, true,
-                getResources().getDisplayMetrics().density));
+        recyclerView.addItemDecoration(new SpacingItemDecorator(
+                resources.getInteger(R.integer.product_page_fr_span_count),
+                resources.getInteger(R.integer.default_recycler_spacing), true,
+                resources.getDisplayMetrics().density));
     }
 
     @Override
-    public void showSelectQuantityDialog(ISelectQuantityPresenter presenter, Product product) {
+    public void showSelectQuantityDialog(ISelectQuantityPresenter presenter) {
         SelectQuantityDialog selectQuantityDialog = SelectQuantityDialog.newInstance(presenter);
         selectQuantityDialog.show(getChildFragmentManager(), SelectQuantityDialog.TAG);
     }

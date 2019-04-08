@@ -65,7 +65,7 @@
             android:textColor="@color/gray_46"
             app:layout_constraintEnd_toStartOf="@+id/tv_dg_select_quantity_weight_total_unit"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/common_zero"/>
+            android:text="@string/common_zero_weight"/>
 
         <TextView
             android:id="@+id/tv_dg_select_quantity_weight_total_unit"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="4dp"
-            android:text="@string/common_zero"
+            android:text="@string/common_zero_weight"
             android:textColor="@color/gray_13"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_dg_select_quantity_weight_unit"
             app:layout_constraintEnd_toStartOf="@+id/tv_dg_select_quantity_weight_unit" />

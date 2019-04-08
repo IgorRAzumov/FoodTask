@@ -16,9 +16,6 @@ public final class ProductEntity {
     @ColumnInfo(name = "id")
     private long id;
 
-    @ColumnInfo(name = "category")
-    private int category;
-
     @ColumnInfo(name = "price")
     @TypeConverters(BigDecimalConverter.class)
     private BigDecimal price;
@@ -41,9 +38,8 @@ public final class ProductEntity {
     @ColumnInfo(name = "weight_unit_quantity")
     private int weightUnitQuantity;
 
-    public ProductEntity( int category,  int country, int weightUnitQuantity,
+    public ProductEntity(int country, int weightUnitQuantity,
                           BigDecimal price,String name, String image, String currency, String weightUnit) {
-        this.category = category;
         this.price = price;
         this.country = country;
         this.name = name;
@@ -76,10 +72,6 @@ public final class ProductEntity {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getCategory() {
-        return category;
     }
 
     public String getCurrency() {

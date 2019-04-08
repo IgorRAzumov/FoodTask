@@ -55,7 +55,7 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
         unbinder.unbind();
     }
 
-    public IFragmentContainer getFragmentContainer() {
+    protected IFragmentContainer getFragmentContainer() {
         return fragmentContainer;
     }
 }

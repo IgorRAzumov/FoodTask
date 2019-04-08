@@ -73,6 +73,15 @@ public class MainActivity extends MvpAppCompatActivity implements MainView, IFra
         Toothpick.closeScope(DI.PRODUCT_SCOPE);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     private void initNavigationView() {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             presenter.menuItemClick();

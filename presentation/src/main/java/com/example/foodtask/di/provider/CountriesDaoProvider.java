@@ -6,7 +6,7 @@ import com.example.data.local.db.dao.CountriesDao;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-public class CountriesDaoProvider implements Provider<CountriesDao> {
+public final class CountriesDaoProvider implements Provider<CountriesDao> {
     private final CountriesDao countriesDao;
 
     @Inject

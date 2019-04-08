@@ -31,7 +31,6 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
     private final Product product;
 
     private ISelectQuantityView selectQuantityView;
-    private float selectedWeight;
     private BigDecimal sum;
     private String selectedQuantity;
 
@@ -63,6 +62,7 @@ public abstract class BaseSelectQuantityPresenter implements ISelectQuantityPres
             return;
         }
         quantitySelected(Float.parseFloat(selectedQuantity.replace(',', '.')), sum);
+        selectQuantityView.exit();
     }
 
     @Override

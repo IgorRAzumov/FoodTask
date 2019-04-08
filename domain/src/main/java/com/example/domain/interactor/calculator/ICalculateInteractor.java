@@ -9,5 +9,5 @@ import io.reactivex.Single;
 
 public interface ICalculateInteractor {
 
-    public Single<BigDecimal> calculateSum(List<OrderItem> data);
+    Single<BigDecimal> calculateSum(List<OrderItem> data);
 }

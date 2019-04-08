@@ -20,7 +20,7 @@ import io.reactivex.functions.Function;
 import timber.log.Timber;
 
 @InjectViewState
-public class OrderPresenter extends BasePresenter<OrderView> {
+public final class OrderPresenter extends BasePresenter<OrderView> {
     private static final String DUMMY_ORDER_NUMBER = "#37";
     private static final String DUMMY_CURRENT_CURRENCY = "Р";
 

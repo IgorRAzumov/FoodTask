@@ -22,7 +22,6 @@ public final class DataMap implements IDataMap {
                     .setWeightUnitQuantity(entity.getWeightUnitQuantity())
                     .setImage(entity.getImage())
                     .setName(entity.getName())
-                    .setCategory(entity.getCategory())
                     .build());
         }
         return products;

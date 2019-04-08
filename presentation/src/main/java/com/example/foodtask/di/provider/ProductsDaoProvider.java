@@ -6,7 +6,7 @@ import com.example.data.local.db.dao.ProductsDao;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-public class ProductsDaoProvider implements Provider<ProductsDao> {
+public final class ProductsDaoProvider implements Provider<ProductsDao> {
     private final ProductsDao productsDao;
 
     @Inject

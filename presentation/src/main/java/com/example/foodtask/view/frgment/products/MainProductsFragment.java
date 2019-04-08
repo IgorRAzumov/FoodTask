@@ -53,8 +53,6 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
     @InjectPresenter
     MainProductsPresenter presenter;
 
-    private ProductsPageAdapter productsPageAdapter;
-
     public static MainProductsFragment newInstance() {
         return new MainProductsFragment();
     }
@@ -111,7 +109,7 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
 
     @Override
     public void countriesDataLoaded(List<Country> countries) {
-        productsPageAdapter = new ProductsPageAdapter(getChildFragmentManager(),
+        ProductsPageAdapter productsPageAdapter = new ProductsPageAdapter(getChildFragmentManager(),
                 createFragments(countries), createFragmentsTitles(countries));
         productsViewPager.setAdapter(productsPageAdapter);
         tabLayout.setupWithViewPager(productsViewPager);
@@ -155,7 +153,7 @@ public class MainProductsFragment extends BaseFragment implements MainProductsVi
         }
         toolbar.setTitleTextColor(ContextCompat.getColor(activity, R.color.white));
         toolbar.setNavigationIcon(R.drawable.ic_menu);
-        toolbar.setNavigationOnClickListener(v -> presenter.onMenuClick());
         activity.setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(v -> presenter.onMenuClick());
     }
 }

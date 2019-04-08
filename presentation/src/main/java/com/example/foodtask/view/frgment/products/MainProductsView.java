@@ -9,7 +9,7 @@ import com.example.domain.model.Country;
 import java.util.List;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
-public interface MainProductsView extends MvpView {
+interface MainProductsView extends MvpView {
     void showProgress();
 
     void hideProgress();

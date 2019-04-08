@@ -4,7 +4,7 @@ import android.arch.persistence.room.TypeConverter;
 
 import java.math.BigDecimal;
 
-public class BigDecimalConverter {
+public final class BigDecimalConverter {
     //наверно не лучший вариант в строке хранить
     @TypeConverter
     public static BigDecimal moneyFromSting(String value) {

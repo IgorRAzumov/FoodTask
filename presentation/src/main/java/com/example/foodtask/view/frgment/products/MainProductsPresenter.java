@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import timber.log.Timber;
 
 @InjectViewState
-public class MainProductsPresenter extends BasePresenter<MainProductsView> {
+public final class MainProductsPresenter extends BasePresenter<MainProductsView> {
     @Inject
     ILoadProductsInteractor loadProductsInteractor;
     @Inject

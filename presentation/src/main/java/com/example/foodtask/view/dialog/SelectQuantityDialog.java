@@ -46,7 +46,6 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
     RecyclerView calcRecycler;
 
     private ISelectQuantityPresenter presenter;
-    private QuantityCalcAdapter adapter;
 
     private Unbinder unbinder;
 
@@ -86,12 +85,6 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
 
 
     @Override
-    public void onStop() {
-        super.onStop();
-
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
         presenter.onViewDetach();
@@ -107,7 +100,7 @@ public class SelectQuantityDialog extends DialogFragment implements ISelectQuant
     public void showQuantitySelection(IQuantityCalcPresenter quantityCalcPresenter) {
         calcRecycler.setHasFixedSize(true);
         calcRecycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        calcRecycler.setAdapter(adapter = new QuantityCalcAdapter(quantityCalcPresenter));
+        calcRecycler.setAdapter(new QuantityCalcAdapter(quantityCalcPresenter));
 
     }
 

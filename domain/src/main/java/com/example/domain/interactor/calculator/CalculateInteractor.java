@@ -3,6 +3,7 @@ package com.example.domain.interactor.calculator;
 import com.example.domain.model.OrderItem;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -19,6 +20,6 @@ public class CalculateInteractor implements ICalculateInteractor {
             sum = sum.add(orderItem.getSum());
         }
 
-        return sum;
+        return sum.setScale(2, RoundingMode.HALF_UP);
     }
 }
